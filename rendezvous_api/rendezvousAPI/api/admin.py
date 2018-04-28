@@ -1,3 +1,10 @@
 from django.contrib import admin
+from .models import Trip
+from .models import School
+from .models import Meetup
+from .models import Destination
 
-# Register your models here.
+admin.site.register(Trip)
+admin.site.register(School)
+admin.site.register(Destination)
+admin.site.register(Meetup)
