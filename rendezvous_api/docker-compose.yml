@@ -1,0 +1,11 @@
+db:
+  image: postgres
+web:
+  build: .
+  command: gunicorn rendezvousapi.wsgi:application -b :8000
+  volumes:
+    - .:/src
+  ports:
+    - "8000:8000"
+  links:
+    - db
