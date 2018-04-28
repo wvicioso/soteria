@@ -3,7 +3,7 @@
 from django.db import models
 
 class Trip(models.Model):
-    """This class represents the bucketlist model."""
+    """This class represents the trip model."""
     name = models.CharField(max_length=255, blank=False, unique=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
