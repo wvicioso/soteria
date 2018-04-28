@@ -1,4 +1,5 @@
 import { AppRegistry } from 'react-native';
-import App from './App';
 
-AppRegistry.registerComponent('rendezvous', () => App);
+import RootNavigator from './src/router.js'
+
+AppRegistry.registerComponent('rendezvous', () => RootNavigator);
