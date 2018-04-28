@@ -1,4 +1,4 @@
-django==1.9.2
+django==1.9.2 
 djangorestframework==3.3.2
 django-filter
 django-rest-swagger
@@ -11,5 +11,13 @@ django-extensions
 coverage
 responses
 mock
+markdown
+
+## testing:
+nose
+django_nose
+pinocchio
+nose-html-reporting
 
 gunicorn
+
