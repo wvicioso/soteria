@@ -21,7 +21,6 @@ class Header extends Component<{}> {
   }
 
   back() {
-    debugger
     this.props.navigation.goBack(null);
   }
 
@@ -46,11 +45,12 @@ class Header extends Component<{}> {
   render() {
     return (
       <View style={headerStyles.wrapper}>
-        <Text>Rendezvous</Text>
+        <Text style={headerStyles.title}>Rendezvous</Text>
         {
           this.props.left ?
           <TouchableOpacity style={headerStyles.back} onPress={this.back.bind(this)}>
-            <Icon name={`chevron-left`} color={'black'} size={25} />
+            {/* <Icon name={`chevron-left`} color={'black'} size={25} /> */}
+            <Text>Back</Text>
           </TouchableOpacity> : <View/>
         }
         {/* {
@@ -59,7 +59,7 @@ class Header extends Component<{}> {
         {
           this.props.travel ?
             <TouchableOpacity style={headerStyles.back} onPress={this.navToTrips.bind(this)}>
-              <Icon name={`dot-circle-o`} color={'rgb(84,199,242)'} size={25} />
+              <Icon name={`dot-circle-o`} color={'rgba(0,188,212,1)'} size={25} />
             </TouchableOpacity> : <View/>
         }
         <Text style={headerStyles.text}>
@@ -73,8 +73,8 @@ class Header extends Component<{}> {
             onTintColor="rgba(84,199,242,1)"
             onValueChange={this.onSwitch.bind(this)}
             // testID
-            // thumbTintColor="rgb(84,199,242)"
-            // tintColor="rgb(84,199,242)"
+            // thumbTintColor="rgba(0,188,212,1)"
+            // tintColor="rgba(0,188,212,1)"
             value={this.state.travelModeBOOL}
           /> : <View/>
         } */}
@@ -95,10 +95,10 @@ let headerStyles = StyleSheet.create({
     borderBottomWidth: 5,
     borderBottomColor: 'white'
   },
-  // text: {
-  //   fontSize: 16,
-  //   fontWeight: '800'
-  // },
+  title: {
+    fontSize: 16,
+    fontWeight: '800'
+  },
   back: {
     position: 'absolute',
     bottom: 0,
@@ -117,26 +117,22 @@ let headerStyles = StyleSheet.create({
 class Label extends Component<{}> {
   render() {
     return(
-      // <View style={[styles.wrapper, this.props.wrapperStyle]}>
-      //   <Text style={[styles.text, this.props.textStyle]}>{this.props.title}</Text>
-      // </View>
-      <View>
-        <Text>{this.props.title}</Text>
+      <View style={[styles.wrapper, this.props.wrapperStyle]}>
+        <Icon  style={{}} name={this.props.name} color={this.props.color} size={25} />
       </View>
     )
   }
 }
 
 let styles = StyleSheet.create({
-  // wrapper: {
-  //   flex: 1,
-  //   width: width/3,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  // },
-  // text: {
-  //   fontSize: 14,
-  // }
+  wrapper: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    width: width/3,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 })
 
 
@@ -147,17 +143,12 @@ const Tabs = TabNavigator(
       navigationOptions: {
         tabBarLabel: ({ focused }) => (
           <Label
-            title='Home'
-            // wrapperStyle={{
-            //   borderBottomWidth: focused ? 2.5 : 0,
-            //   borderBottomColor: 'rgb(84,199,242)',
-            //   paddingBottom: 15
-            // }}
-            // textStyle={{
-            //   color: focused ? 'black' : '#bdbdbd',
-            //   fontWeight: focused ? '800' : '600',
-            //   fontSize: 13
-            // }}
+            name='square-o'
+            wrapperStyle={{
+              borderBottomWidth: focused ? 2.5 : 0,
+              borderBottomColor: 'rgba(0,188,212,1)',
+            }}
+            color={focused ? 'rgba(0,188,212,1)' : '#e0e0e0' }
           />
         ),
       }
@@ -167,17 +158,12 @@ const Tabs = TabNavigator(
       navigationOptions: {
         tabBarLabel: ({ focused }) => (
           <Label
-            title='Profile'
-            // wrapperStyle={{
-            //   borderBottomWidth: focused ? 2.5 : 0,
-            //   borderBottomColor: 'rgb(84,199,242)',
-            //   paddingBottom: 15
-            // }}
-            // textStyle={{
-            //   color: focused ? 'black' : '#bdbdbd',
-            //   fontWeight: focused ? '800' : '600',
-            //   fontSize: 13
-            // }}
+            name='user-o'
+            wrapperStyle={{
+              borderBottomWidth: focused ? 2.5 : 0,
+              borderBottomColor: 'rgba(0,188,212,1)',
+            }}
+            color={focused ? 'rgba(0,188,212,1)' : '#e0e0e0' }
           />
         ),
       }
@@ -187,17 +173,12 @@ const Tabs = TabNavigator(
       navigationOptions: {
         tabBarLabel: ({ focused }) => (
           <Label
-            title='Third'
-            // wrapperStyle={{
-            //   borderBottomWidth: focused ? 2.5 : 0,
-            //   borderBottomColor: 'rgb(84,199,242)',
-            //   paddingBottom: 15
-            // }}
-            // textStyle={{
-            //   color: focused ? 'black' : '#bdbdbd',
-            //   fontWeight: focused ? '800' : '600',
-            //   fontSize: 13
-            // }}
+            name='circle-o'
+            wrapperStyle={{
+              borderBottomWidth: focused ? 2.5 : 0,
+              borderBottomColor: 'rgba(0,188,212,1)',
+            }}
+            color={focused ? 'rgba(0,188,212,1)' : '#e0e0e0' }
           />
         ),
       }
@@ -208,14 +189,14 @@ const Tabs = TabNavigator(
     tabBarPosition: 'bottom',
     swipeEnabled: true,
     tabBarOptions: {
-      // activeTintColor: 'rgb(84,199,242)',
+      activeTintColor: 'rgba(0,188,212,1)',
       style: {
-        // backgroundColor: 'white',
-        // borderTopWidth: 0,
-        // shadowOpacity: 1,
-        // shadowColor: 'rgba(45,45,45,.15)',
-        // shadowOffset: { width: 1, height: 1 },
-        // shadowRadius: 5,
+        backgroundColor: 'white',
+        borderTopWidth: 0,
+        shadowOpacity: 1,
+        shadowColor: 'rgba(45,45,45,.15)',
+        shadowOffset: { width: 1, height: 1 },
+        shadowRadius: 5,
       },
     }
   }
@@ -233,7 +214,7 @@ const Tabs = TabNavigator(
 //           <Icon
 //             name='home'
 //             // size={20}
-//             // color={focused ? "rgb(84,199,242)" : '#bdbdbd'}
+//             // color={focused ? "rgba(0,188,212,1)" : '#bdbdbd'}
 //           />
 //         ),
 //       }
@@ -247,7 +228,7 @@ const Tabs = TabNavigator(
 //           <Icon
 //             name='plus'
 //             size={20}
-//             color={focused ? "rgb(84,199,242)" : '#bdbdbd'}
+//             color={focused ? "rgba(0,188,212,1)" : '#bdbdbd'}
 //           />
 //         ),
 //       }
