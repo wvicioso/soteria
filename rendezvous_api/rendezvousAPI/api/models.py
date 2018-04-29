@@ -2,26 +2,16 @@
 
 from django.db import models
 
-class User(models.Model):
-    """This class represents the User model."""
-    name = models.CharField(max_length=255, blank=False, unique=True)
-    phone = models.IntegerField(blank=False, unique=True)
-    email = models.EmailField(max_length=254, blank=False, unique=True)
-    date_created = models.DateTimeField(auto_now_add=True)
-    date_modified = models.DateTimeField(auto_now=True)
-
-class Trip(models.Model):
-    """This class represents the trip model."""
-    meetup = models.CharField(max_length=255, blank=False)
-    destination = models.CharField(max_length=255, blank=False)
-    users = models.ManyToManyField(User)
-    time = models.DateTimeField(default=None)
+class Profile(models.Model):
+    """This class represents the Profile model."""
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE, default=1)
+    url = models.CharField(max_length=255, blank=True, unique=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         """Return a human readable representation of the model instance."""
-        return "{}".format(self.name)
+        return "{}".format(self.user)
 
 class School(models.Model):
     """This class represents the trip model."""
@@ -60,3 +50,16 @@ class Meetup(models.Model):
     def __str__(self):
         """Return a human readable representation of the model instance."""
         return "{}".format(self.school)
+
+class Trip(models.Model):
+    """This class represents the trip model."""
+    meetup = models.ForeignKey(Meetup, db_column='address', on_delete=models.CASCADE)
+    destination = models.ForeignKey(Destination, db_column='train_stop', on_delete=models.CASCADE)
+    users = models.ManyToManyField(Profile)
+    time = models.DateTimeField(default=None)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        """Return a human readable representation of the model instance."""
+        return "{}".format(self.name)

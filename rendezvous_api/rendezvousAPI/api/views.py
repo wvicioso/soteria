@@ -1,6 +1,8 @@
 # api/views.py
 
-from rest_framework import generics
+from rest_framework import generics, permissions
+from .serializers import ProfileSerializer
+from .models import Profile
 from .serializers import TripSerializer
 from .models import Trip
 from .serializers import SchoolSerializer
@@ -9,6 +11,24 @@ from .serializers import MeetupSerializer
 from .models import Meetup
 from .serializers import DestinationSerializer
 from .models import Destination
+
+class ProfileCreateView(generics.ListCreateAPIView):
+    """This class defines the create behavior of our rest api."""
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+
+    def perform_create(self, serializer):
+        """Save the post data when creating a new Trip."""
+        serializer.save()
+
+    permission_classes = (permissions.IsAuthenticated,)
+
+class ProfileDetailsView(generics.RetrieveUpdateDestroyAPIView):
+    """This class handles the http GET, PUT and DELETE requests."""
+
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
 class TripCreateView(generics.ListCreateAPIView):
     """This class defines the create behavior of our rest api."""
