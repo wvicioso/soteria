@@ -49,5 +49,5 @@ class DestinationSerializer(serializers.ModelSerializer):
     class Meta:
         """Meta class to map serializer's fields with the model fields."""
         model = Destination
-        fields = ('train_stop', 'school', 'lat', 'long', 'trains', 'date_created', 'date_modified')
+        fields = ('id', 'train_stop', 'school', 'lat', 'long', 'trains', 'date_created', 'date_modified')
         read_only_fields = ('date_created', 'date_modified')

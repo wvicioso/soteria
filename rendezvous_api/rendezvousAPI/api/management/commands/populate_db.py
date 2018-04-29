@@ -5,6 +5,7 @@ THIS IS WHERE WE POPULATE OUR DATABASE
 """
 
 from django.core.management.base import BaseCommand
+from django.contrib.auth.models import User
 from api.models import *
 # from datetime import date, datetime, time, timedelta
 # from dateutil.relativedelta import relativedelta
@@ -57,7 +58,19 @@ class Command(BaseCommand):
     		instance.save()
     	print ("\n MEETUP TABLE POPULATED SUCCESSFULLY\n")
 
+    def _populate_users(self):
+    	
+    	users = ["mofizur_rahman","Beth_Morrow", "Faith_Fraser", "Philip_Delvecchio", "Raymond_Blum", "Peter_Harrison",  "Iynna_Hililou"]
+    	count = 0
+    	for i in users:
+    		random = User.objects.create_user(i.lower(), password='hackathon')
+    		instance = Profile(user=random, url=count)
+    		instance.save()
+    		count+=1
+    	print ("\n Users TABLE POPULATED SUCCESSFULLY\n")
+
     def handle(self, *args, **options):
-        self._populate_schools()
-        self._populate_destination()
-        self._populate_meetup()
+        # self._populate_schools()
+        # self._populate_destination()
+        # self._populate_meetup()
+        self._populate_users()
