@@ -8,8 +8,31 @@ export default class TripSelect extends Component<{}> {
   constructor(props) {
     super(props);
     this.state = {
-
+      userLat: '',
+      userLng: '',
     }
+  }
+
+  componentDidMount() {
+    this.getLocation();
+  }
+
+  getTrainOptions() {
+
+  }
+
+  getLocation() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setState({
+          userLat: position.coords.latitude,
+          userLng: position.coords.longitude
+        })
+        this.getUserCount();
+      },
+      (error) => console.log(error.message),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+    )
   }
 
   render() {

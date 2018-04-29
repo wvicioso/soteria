@@ -93,7 +93,7 @@ let headerStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomWidth: 5,
-    borderBottomColor: 'white'
+    borderBottomColor: 'white',
   },
   title: {
     fontSize: 16,
@@ -104,12 +104,6 @@ let headerStyles = StyleSheet.create({
     bottom: 0,
     left: 10,
   },
-  // switch: {
-  //   position: 'absolute',
-  //   alignSelf: 'center',
-  //   right: 10,
-  //   top: 35
-  // }
 })
 
 
@@ -168,21 +162,6 @@ const Tabs = TabNavigator(
         ),
       }
     },
-    Third: {
-      screen: Third,
-      navigationOptions: {
-        tabBarLabel: ({ focused }) => (
-          <Label
-            name='circle-o'
-            wrapperStyle={{
-              borderBottomWidth: focused ? 2.5 : 0,
-              borderBottomColor: 'rgba(0,188,212,1)',
-            }}
-            color={focused ? 'rgba(0,188,212,1)' : '#e0e0e0' }
-          />
-        ),
-      }
-    },
   },
   {
     // initialRouteName: 'LocalActivities',
@@ -202,48 +181,6 @@ const Tabs = TabNavigator(
   }
 )
 
-// const GlobalTabs = TabNavigator(
-//   {
-//     Home: {
-//       screen: Tabs,
-//       navigationOptions: {
-//         header: ({ navigation }) => (
-//               <Header navigation={navigation}/>
-//         ),
-//         tabBarIcon: ({ focused }) => (
-//           <Icon
-//             name='home'
-//             // size={20}
-//             // color={focused ? "rgba(0,188,212,1)" : '#bdbdbd'}
-//           />
-//         ),
-//       }
-//     },
-//     Add: {
-//       screen: Create,
-//       navigationOptions: {
-//         header: null,
-//         // header: (<Header title="Trip Creation"/>),
-//         tabBarIcon: ({ focused }) => (
-//           <Icon
-//             name='plus'
-//             size={20}
-//             color={focused ? "rgba(0,188,212,1)" : '#bdbdbd'}
-//           />
-//         ),
-//       }
-//     },
-//   },
-//   {
-//     tabBarOptions: {
-//       showLabel: false,
-//       style: {
-//
-//       },
-//     }
-//   },
-// )
-
 const RootNavigator = StackNavigator(
   {
     Login: {
@@ -257,29 +194,22 @@ const RootNavigator = StackNavigator(
       screen: Tabs,
       navigationOptions: {
         gesturesEnabled: false,
-        header: ({ navigation }) => (
-              <Header navigation={navigation}/>
-        ),
+        header: null,
+        // header: ({ navigation }) => (
+        //       <Header navigation={navigation}/>
+        // ),
       }
     },
     TripSelect: {
       screen: TripSelect,
       navigationOptions: {
         gesturesEnabled: false,
-        header: ({ navigation }) => (
-              <Header left navigation={navigation}/>
-        ),
+        header: null,
+        // header: ({ navigation }) => (
+        //       <Header left navigation={navigation}/>
+        // ),
       }
     },
-    // UserProfile: {
-    //   screen: Profile,
-    //   navigationOptions: {
-    //     header: ({ navigation }) => (
-    //           <Header navigation={navigation}/>
-    //     ),
-    //     gesturesEnabled: false,
-    //   }
-    // },
   },
   {
     transitionConfig: () => ({

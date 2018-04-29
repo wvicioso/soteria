@@ -9,8 +9,9 @@ export default class EmailInput extends Component<{}> {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
+      email: 'wvicioso',
       collegeOffest: 0,
+      collegeOpacity: 0,
       college: '',
       collegeSelected: false
     }
@@ -19,24 +20,25 @@ export default class EmailInput extends Component<{}> {
   toggleCollege() {
     this.state.collegeOffest == 0 ?
     this.setState({
-      collegeOffest: 50,
+      collegeOffest: 70,
+      collegeOpacity: 1,
+
       college: '',
     }) :
     this.setState({
       collegeOffest: 0,
-    })
-  }
+      collegeOpacity: 0,
 
-  login() {
-    this.props.navigation.navigate('First')
+    })
   }
 
   appendCollege(college) {
-    let newEmail = this.state.email + college
+    let newEmail = this.state.email + '@' + college
     this.setState({
       college: college
     })
-    this.toggleCollege();
+    this.props.updateEmail(newEmail);
+    this.toggleCollege(newEmail);
   }
 
   render() {
@@ -65,15 +67,21 @@ export default class EmailInput extends Component<{}> {
               <Text style={styles.collegeEndingInput}>Show Colleges</Text>
             }
           </TouchableOpacity>
-          <View style={[styles.colleges, {height: this.state.collegeOffest}]}>
-            <TouchableOpacity  onPress={this.appendCollege.bind(this, 'baruchmail.cuny.edu')}>
-              <Text style={{color: 'white', textAlign: 'left', fontSize: 12, fontWeight: 'bold'}}>Baruch College</Text>
+          <View style={[styles.colleges, {height: this.state.collegeOffest, opacity: this.state.collegeOpacity}]}>
+            <TouchableOpacity style={styles.collegeChoices} onPress={this.appendCollege.bind(this, 'baruchmail.cuny.edu')}>
+              <Text style={styles.collegeText}>
+                Baruch College
+              </Text>
             </TouchableOpacity>
-            <TouchableOpacity  onPress={this.appendCollege.bind(this, 'citymail.cuny.edu')}>
-              <Text style={{color: 'white', textAlign: 'left', fontSize: 12, fontWeight: 'bold'}}>City College</Text>
+            <TouchableOpacity style={styles.collegeChoices} onPress={this.appendCollege.bind(this, 'citymail.cuny.edu')}>
+              <Text style={styles.collegeText}>
+                City College
+              </Text>
             </TouchableOpacity>
-            <TouchableOpacity  onPress={this.appendCollege.bind(this, 'lc.cuny.edu')}>
-              <Text style={{color: 'white', textAlign: 'left', fontSize: 12, fontWeight: 'bold'}}>Leman College</Text>
+            <TouchableOpacity style={styles.collegeChoices} onPress={this.appendCollege.bind(this, 'lc.cuny.edu')}>
+              <Text style={styles.collegeText}>
+                Leman College
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -91,6 +99,7 @@ let styles = StyleSheet.create({
       alignItems: 'center'
     },
     colleges: {
+      zIndex: 1000000,
       height: 0,
       width: width * .25,
     },
@@ -131,5 +140,22 @@ let styles = StyleSheet.create({
         backgroundColor: 'rgba(255,255,255,.7)',
         padding: 10,
         borderRadius: 10
+    },
+    collegeChoices: {
+      backgroundColor: '#e0e0e050',
+      borderRadius: 5,
+      marginTop: 5,
+      width: width * .28,
+      marginLeft: -6
+    },
+    collegeText:  {
+      paddingRight: 2,
+      paddingLeft: 2,
+      paddingTop: 5,
+      paddingBottom: 5,
+      color: 'rgba(0,188,212,.8)',
+      textAlign: 'center',
+      fontSize: 12,
+      fontWeight: 'bold'
     }
   })

@@ -10,12 +10,16 @@ export default class Login extends Component<{}> {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: 'werwerw'
     }
   }
 
   login() {
-    this.props.navigation.navigate('First')
+    this.props.navigation.navigate('First', {email: this.state.email});
+  }
+
+  updateEmail(email) {
+    this.setState({email})
   }
 
   render() {
@@ -25,23 +29,34 @@ export default class Login extends Component<{}> {
           blurRadius={5}
           source={require('../../nyc-walk.jpg')}
         />
+
         <View style={styles.filter}/>
-        <Text style={styles.header}>Rendezvous</Text>
-        <EmailInput />
+        {/* <Text style={styles.header}>Rendezvous</Text> */}
+        <EmailInput updateEmail={this.updateEmail.bind(this)}/>
         <TextInput
+          value={this.state.password}
           placeholder='Password'
           placeholderTextColor='#e0e0e0'
           secureTextEntry
           style={styles.password}
-          // style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          // onChangeText={(text) => this.setState({text})}
-          // value={this.state.text}
         />
         <TouchableOpacity style={styles.login} onPress={this.login.bind(this)}>
           <Text style={{fontWeight: 'bold', color: 'white', fontSize: 17}}>
             Login
           </Text>
         </TouchableOpacity>
+        <View style={styles.registerWrapper}>
+          <Text style={styles.registerText}>Don't have an account?</Text>
+          <TouchableOpacity>
+            <Text style={styles.registerBtn}>Sign Up</Text>
+          </TouchableOpacity>
+        </View>
+        <Image style={styles.logo}
+          source={require('../../logo-final.png')}
+        />
+        <Image style={styles.logoBlue}
+          source={require('../../logo-blue.png')}
+        />
       </View>
     );
   }
@@ -66,25 +81,33 @@ let styles = StyleSheet.create({
   },
   header: {
     position: 'absolute',
-    top: 50,
+    top: 180,
     alignSelf: 'center',
     fontWeight: 'bold',
-    fontSize: 27,
+    fontSize: 37,
     color: 'rgba(0,188,212,1)',
-    // shadowColor: 'rgba(255,255,255,.5)',
-    // shadowOffset: { width: 0, height: 1 },
-    // shadowOpacity: 1,
-    // shadowRadius: 4,
+    // opacity: 0
+  },
+  logo: {
+    position: 'absolute',
+    top: 50,
+    width,
+    height: 140,
+    resizeMode: 'contain'
+  },
+  logoBlue: {
+    position: 'absolute',
+    top: 200,
+    width,
+    height: 30,
+    resizeMode: 'contain'
   },
   password: {
     fontWeight: 'bold',
     height: height * .05,
-    // backgroundColor: '#e0e0e0',
-    borderBottomWidth: 0,
+    borderBottomWidth: 1,
     borderBottomColor: 'rgba(255,255,255,.4)',
-    backgroundColor: 'rgba(0,188,212,.5)',
-    borderRadius: 25,
-    paddingLeft: 20,
+    paddingLeft: 10,
     width: width * .85,
     marginTop: 10,
     color: 'white'
@@ -92,12 +115,23 @@ let styles = StyleSheet.create({
   login: {
     position: 'absolute',
     bottom: 100,
-    // marginTop: 70,
     padding: 15,
-    paddingRight: 50,
-    paddingLeft: 50,
-    // backgroundColor: 'rgba(255,255,255,.7)',
+    paddingRight: 120,
+    paddingLeft: 120,
     backgroundColor: 'rgba(0,188,212,1)',
-    borderRadius: 10
-  }
+    borderRadius: 25
+  },
+  registerWrapper: {
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: 25,
+  },
+  registerText: {
+    color: 'white'
+  },
+  registerBtn: {
+    color: 'white',
+    fontWeight: 'bold',
+    marginLeft: 5
+  },
 })
