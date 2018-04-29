@@ -40,7 +40,7 @@ class MeetupSerializer(serializers.ModelSerializer):
     class Meta:
         """Meta class to map serializer's fields with the model fields."""
         model = Meetup
-        fields = ('address', 'school', 'lat', 'long', 'date_created', 'date_modified')
+        fields = ('id', 'address', 'school', 'lat', 'long', 'date_created', 'date_modified')
         read_only_fields = ('date_created', 'date_modified')
 
 class DestinationSerializer(serializers.ModelSerializer):

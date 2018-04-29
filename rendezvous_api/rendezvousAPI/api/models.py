@@ -5,7 +5,7 @@ from django.db import models
 class Profile(models.Model):
     """This class represents the Profile model."""
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE, default=1)
-    url = models.CharField(max_length=255, blank=False, unique=True)
+    url = models.CharField(max_length=255, blank=True, unique=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
 
