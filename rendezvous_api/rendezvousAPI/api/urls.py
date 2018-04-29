@@ -2,6 +2,8 @@
 
 from django.conf.urls import url, include
 from rest_framework.urlpatterns import format_suffix_patterns
+from .views import ProfileCreateView
+from .views import ProfileDetailsView
 from .views import TripCreateView
 from .views import TripDetailsView
 from .views import SchoolCreateView
@@ -12,6 +14,11 @@ from .views import DestinationCreateView
 from .views import DestinationDetailsView
 
 urlpatterns = {
+    url(r'^auth/', include('rest_framework.urls', # ADD THIS URL
+                               namespace='rest_framework')),
+    url(r'^profiles/$', ProfileCreateView.as_view(), name="create"),
+    url(r'^profiles/(?P<pk>[0-9]+)/$',
+    ProfileDetailsView.as_view(), name="details"),
     url(r'^trips/$', TripCreateView.as_view(), name="create"),
     url(r'^trips/(?P<pk>[0-9]+)/$',
         TripDetailsView.as_view(), name="details"),
