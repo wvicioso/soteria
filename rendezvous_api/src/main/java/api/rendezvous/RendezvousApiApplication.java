@@ -1,4 +1,4 @@
-package api.rendezvous.rendezvous_api;
+package api.rendezvous;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package api.rendezvous.rendezvous_api;
+package api.rendezvous;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
