@@ -1,4 +1,4 @@
-package api.rendezvous.model;
+package api.rendezvous.models;
 
 import javax.persistence.*;
 import java.util.Date;

@@ -1,28 +1,39 @@
-package api.rendezvous.model;
-
-import api.rendezvous.model.School;
-import org.springframework.boot.autoconfigure.web.ResourceProperties;
+package api.rendezvous.models;
 
 import javax.persistence.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Entity
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long user_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)             //Should use Sequence for better performance
+    private long user_id = ThreadLocalRandom.current().nextLong(1000000);  //temporary key generation
 
     private String userName;
     private String firstName;
     private String lastName;
     private String school_email;
     private String profile_pic;     // is a url
+    private long schoolID;          //foreign key
 
-    @ManyToOne()
-    private School school;
+    public User() {
+
+    }
+    public User(String userName, String firstName, String lastName, String school_email, long schoolID) {
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.school_email = school_email;
+        this.schoolID = schoolID;
+    }
 
     public long getUser_id() {
         return user_id;
+    }
+
+    public void setUser_id(long user_id) {
+        this.user_id = user_id;
     }
 
     public String getUserName() {
@@ -65,12 +76,12 @@ public class User {
         this.profile_pic = profile_pic;
     }
 
-    public School getSchool() {
-        return school;
+    public long getSchoolID() {
+        return schoolID;
     }
 
-    public void setSchool(School school) {
-        this.school = school;
+    public void setSchoolID(long schoolID) {
+        this.schoolID = schoolID;
     }
 
     @Override

@@ -1,10 +1,9 @@
-package api.rendezvous.model;
+package api.rendezvous.models;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import java.util.List;
 import java.util.Set;
 
 public class School {
@@ -12,9 +11,11 @@ public class School {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long school_id;
+    private String address;
+    private String school_name;
 
-    String school_name;
-    String address;
+    public static final long BARUCH = 1;        // baruch's id
+    public static final long CITY = 2;          // city's id
 
     public String getSchool_name() {
         return school_name;
