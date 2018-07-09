@@ -1,9 +1,14 @@
 package api.rendezvous.models;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
+@Entity
 public class Station {
 
     @Id
@@ -11,32 +16,34 @@ public class Station {
     private long station_id;
 
     String station_name;
+//    Map<Long, String> lines;
+    Double latitude;
+    Double longitude;
+
+//    public Station(long station_id, String station_name, Map<Long, String> lines, Double latitude, Double longitude) {
+//        this.station_id = station_id;
+//        this.station_name = station_name;
+//        this.lines  = lines;
+//        this.latitude = latitude;
+//        this.longitude = longitude;
+//    }
+
+    public Station(long station_id, String station_name, Double latitude, Double longitude) {
+        this.station_id = station_id;
+        this.station_name = station_name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 
     public String getStation_name() {
         return station_name;
-    }
-
-    public void setStation_name(String station_name) {
-        this.station_name = station_name;
     }
 
     public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-
     public Double getLongitude() {
         return longitude;
     }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
-
-    Double latitude;
-    Double longitude;
-
 }
