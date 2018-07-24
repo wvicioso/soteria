@@ -4,7 +4,7 @@ import api.rendezvous.models.User;
 
 import java.util.Collection;
 
-public interface UserDao {
+public interface UserDaoInterface {
     Collection<User> getAllUsers();
 
     User getUserById(long user_id);

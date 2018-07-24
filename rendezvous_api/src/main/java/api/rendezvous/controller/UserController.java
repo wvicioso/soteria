@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -21,7 +22,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/{user_id}", method = RequestMethod.GET)
-    public User getUserById(@PathVariable("user_id") long user_id) {
+    public Optional<User> getUserById(@PathVariable("user_id") long user_id) {
         return this.userService.getUserById(user_id);
     }
 

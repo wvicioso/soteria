@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Entity
+@Table(name = "User")
 public class User {
 
     @Id
@@ -16,6 +17,7 @@ public class User {
     private String school_email;
     private String profile_pic;     // is a url
     private long schoolID;          //foreign key
+//    private String password;
 
     public User() {
 

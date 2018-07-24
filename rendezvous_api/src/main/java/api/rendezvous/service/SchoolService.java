@@ -1,6 +1,6 @@
 package api.rendezvous.service;
 
-import api.rendezvous.daolayer.SchoolDB;
+import api.rendezvous.daolayer.SchoolFake;
 import api.rendezvous.models.School;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import java.util.Collection;
 public class SchoolService {
 
     @Autowired
-    private SchoolDB schooldao;
+    private SchoolFake schooldao;
 
     public Collection<School> getAllSchools() {
         return this.schooldao.getAllSchools();

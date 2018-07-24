@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 @Repository
 @Qualifier("FakeData")
-public class UserDB implements UserDao {
+public class UserDB implements UserDaoInterface {
 
     private static Map<Long, User> users;
 

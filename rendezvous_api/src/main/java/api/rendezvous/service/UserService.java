@@ -1,39 +1,39 @@
 package api.rendezvous.service;
 
-import api.rendezvous.daolayer.UserDB;
+import api.rendezvous.daolayer.UserRepository;
 import api.rendezvous.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class UserService {
 
     @Autowired
-    @Qualifier("FakeData")
-    private UserDB userdao;
+    @Qualifier("MySql")
+    private UserRepository userdao;
 
     public Collection<User> getAllUsers() {
-        return this.userdao.getAllUsers();
+        return (Collection<User>) this.userdao.findAll();
     }
 
-    public User getUserById(long user_id) {
+    public Optional<User> getUserById(long user_id) {
         //do a check to see if user actually exists.
         //if so return the value else return an error code
-        return this.userdao.getUserById(user_id);
+        return this.userdao.findById(user_id);
     }
 
     public void deleteUserById(long user_id) {
-        this.userdao.deleteUserById(user_id);
+        this.userdao.deleteById(user_id);
     }
 
-    public void updateUser(User user) {
-        this.userdao.updateUser(user);
+    public void updateUser(User user) { this.userdao.save(user);
     }
 
     public void insertUser(User user) {
-        this.userdao.insertUserToDb(user);
+        this.userdao.save(user);
     }
 }

@@ -10,7 +10,7 @@ import java.util.Map;
 
 @Repository
 @Qualifier("FakeData")
-public class SchoolDB implements SchoolDao {
+public class SchoolFake implements SchoolDaoInterface {
 
     private static Map<Long, School> schools;
 
