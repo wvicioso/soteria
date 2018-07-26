@@ -8,8 +8,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)             //Should use Sequence for better performance
-    private long user_id = ThreadLocalRandom.current().nextLong(1000000);  //temporary key generation
+    @GeneratedValue(strategy = GenerationType.AUTO)             //Should use Sequence for better performance
+    private long user_id; // = ThreadLocalRandom.current().nextLong(1000000);  //temporary key generation
 
     private String userName;
     private String firstName;

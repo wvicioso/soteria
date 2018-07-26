@@ -1,4 +1,4 @@
-package api.rendezvous.daolayer;
+package api.rendezvous.repository;
 
 import api.rendezvous.models.Station;
 import org.springframework.stereotype.Repository;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 
 @Repository
-public class StationDB implements StationDao {
+public class StationFake implements StationDao {
 
     private static Map<Long, Station> stations;
 
@@ -30,12 +30,12 @@ public class StationDB implements StationDao {
     }
 
     @Override
-    public Collection<Station> getAllStations() {
+    public Collection<Station> findAll() {
         return this.stations.values();
     }
 
     @Override
-    public Station getStationById(long station_id) {
+    public Station findById(long station_id) {
         return this.stations.get(station_id);
     }
 }

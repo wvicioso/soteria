@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/stations")
@@ -23,7 +24,7 @@ public class StationController {
     }
 
     @RequestMapping(value = "/{station_id}")
-    public Station getStationById(@PathVariable long station_id) {
+    public Optional<Station> getStationById(@PathVariable long station_id) {
         return this.stationService.getStationById(station_id);
     }
 

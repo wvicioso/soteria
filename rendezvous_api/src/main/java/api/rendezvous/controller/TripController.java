@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/trips")
@@ -20,7 +21,7 @@ public class TripController {
     }
 
     @RequestMapping(value = "/{trip_id}", method = RequestMethod.GET)
-    public Trip getTripById(@PathVariable long trip_id) {
+    public Optional<Trip> getTripById(@PathVariable long trip_id) {
         return this.tripService.getTripById(trip_id);
     }
 

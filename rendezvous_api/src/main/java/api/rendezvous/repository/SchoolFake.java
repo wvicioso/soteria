@@ -1,4 +1,4 @@
-package api.rendezvous.daolayer;
+package api.rendezvous.repository;
 
 import api.rendezvous.models.School;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,7 +10,7 @@ import java.util.Map;
 
 @Repository
 @Qualifier("FakeData")
-public class SchoolFake implements SchoolDaoInterface {
+public class SchoolFake implements SchoolDao {
 
     private static Map<Long, School> schools;
 
@@ -24,12 +24,12 @@ public class SchoolFake implements SchoolDaoInterface {
     }
 
     @Override
-    public Collection<School> getAllSchools() {
+    public Collection<School> findAll() {
         return this.schools.values();
     }
 
     @Override
-    public School getSchoolById(long school_id) {
+    public School findById(long school_id) {
         return this.schools.get(school_id);
     }
 }

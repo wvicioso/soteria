@@ -1,4 +1,4 @@
-package api.rendezvous.daolayer;
+package api.rendezvous.repository;
 
 import api.rendezvous.models.Trip;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,7 +12,7 @@ import java.util.Map;
 
 @Repository
 @Qualifier("FakeData")
-public class TripDB implements TripDao {
+public class TripFake implements TripDao {
 
     private static Map<Long, Trip> trips;
     private static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -29,24 +29,24 @@ public class TripDB implements TripDao {
     }
 
     @Override
-    public Collection<Trip> getAllTrips() {
+    public Collection<Trip> findAll() {
         return this.trips.values();
     }
 
     @Override
-    public Trip getTripById(long trip_id) {
+    public Trip findById(long trip_id) {
         return this.trips.get(trip_id);
     }
 
-    @Override
-    public void editTrip(Trip trip) {
-        if(trips.containsKey(trip.getTrip_id())) {
-            trips.put(trip.getTrip_id(), trip);
-        }
-    }
+//    @Override
+//    public void edit(Trip trip) {
+//        if(trips.containsKey(trip.getTrip_id())) {
+//            trips.put(trip.getTrip_id(), trip);
+//        }
+//    }
 
     @Override
-    public void insertTrip(Trip trip) {
+    public void save(Trip trip) {
         trips.put(trip.getTrip_id(), trip);
     }
 

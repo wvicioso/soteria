@@ -1,35 +1,40 @@
 package api.rendezvous.service;
 
-import api.rendezvous.daolayer.TripDB;
-import api.rendezvous.daolayer.TripDao;
 import api.rendezvous.models.Trip;
+import api.rendezvous.repository.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class TripService {
 
+//    @Autowired
+//    @Qualifier("FakeData")
+//    private TripDao triprepository;
+
     @Autowired
-    @Qualifier("FakeData")
-    private TripDao tripservice;
+    @Qualifier("MySql")
+    private TripRepository triprepository;
+
 
     public Collection<Trip> getAllTrips() {
-        return this.tripservice.getAllTrips();
+        return this.triprepository.findAll();
     }
 
-    public Trip getTripById(long trip_id) {
-        return this.tripservice.getTripById(trip_id);
+    public Optional<Trip> getTripById(long trip_id) {
+        return this.triprepository.findById(trip_id);
     }
 
     public void editTrip(Trip trip) {
-        this.tripservice.editTrip(trip);
+        this.triprepository.save(trip);
     }
 
     public void insertTrip(Trip trip) {
-        this.tripservice.insertTrip(trip);
+        this.triprepository.save(trip);
     }
 
 }

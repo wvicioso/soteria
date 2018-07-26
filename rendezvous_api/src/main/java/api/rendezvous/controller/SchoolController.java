@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/schools")
@@ -20,7 +21,7 @@ public class SchoolController {
     }
 
     @RequestMapping(value = "/{school_id}", method = RequestMethod.GET)
-    public School getSchoolById(@PathVariable long school_id) {
+    public Optional<School> getSchoolById(@PathVariable long school_id) {
         return this.schoolservice.getSchoolById(school_id);
     }
 

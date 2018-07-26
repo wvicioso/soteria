@@ -1,4 +1,4 @@
-package api.rendezvous.daolayer;
+package api.rendezvous.repository;
 
 import api.rendezvous.models.User;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 @Repository
 @Qualifier("FakeData")
-public class UserDB implements UserDaoInterface {
+public class UserFake implements UserDao {
 
     private static Map<Long, User> users;
 
@@ -26,27 +26,22 @@ public class UserDB implements UserDaoInterface {
     }
 
     @Override
-    public Collection<User> getAllUsers() {
+    public Collection<User> findAll() {
         return this.users.values();
     }
 
     @Override
-    public User getUserById(long user_id) {
+    public User findById(long user_id) {
         return this.users.get(user_id);
     }
 
     @Override
-    public void deleteUserById(long user_id) {
+    public void deleteById(long user_id) {
         users.remove(user_id);
     }
 
     @Override
-    public void updateUser(User user) {
-        users.put(user.getUser_id(), user);
-    }
-
-    @Override
-    public void insertUserToDb(User user) {
+    public void save(User user) {
         users.put(user.getUser_id(), user);
     }
 }

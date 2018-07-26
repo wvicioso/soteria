@@ -8,7 +8,7 @@ import java.util.Set;
 public class Trip {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long trip_id;
     String trip_date;
 //    Station start_station;
@@ -18,6 +18,12 @@ public class Trip {
 //    Set<String> user_id;
 
     public Trip() {
+    }
+
+    public Trip(String trip_date, String start_station, String end_station) {
+        this.trip_date = trip_date;
+        this.start_station = start_station;
+        this.end_station = end_station;
     }
 
     public Trip(long trip_id, String trip_date, String start_station, String end_station) {
