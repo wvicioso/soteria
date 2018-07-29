@@ -1,68 +1,82 @@
 package api.rendezvous.models;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Trip {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long trip_id;
-    String trip_date;
-//    Station start_station;
-//    Station end_station;
-    String start_station;
-    String end_station;
-//    Set<String> user_id;
+    private long id;
+    String tripDate;
+    String startStation;
+    String endStation;
+
+    @ManyToMany
+    List<User> users;
 
     public Trip() {
     }
 
-    public Trip(String trip_date, String start_station, String end_station) {
-        this.trip_date = trip_date;
-        this.start_station = start_station;
-        this.end_station = end_station;
+    public Trip(String tripDate, String start_station, String endStation) {
+        this.tripDate = tripDate;
+        this.startStation = start_station;
+        this.endStation = endStation;
+        this.users = new ArrayList<User>();
     }
 
-    public Trip(long trip_id, String trip_date, String start_station, String end_station) {
-        this.trip_id = trip_id;
-        this.trip_date = trip_date;
-        this.start_station = start_station;
-        this.end_station = end_station;
+    public Trip(long id, String tripDate, String startStation, String endStation, List<User> users) {
+        this.id = id;
+        this.tripDate = tripDate;
+        this.startStation = startStation;
+        this.endStation = endStation;
+        this.users = users;
     }
 
-
-    public long getTrip_id() {
-        return trip_id;
+    public long getId() {
+        return id;
     }
 
-    public void setTrip_id(long trip_id) {
-        this.trip_id = trip_id;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getStart_station() {
-        return start_station;
+    public String getStartStation() {
+        return startStation;
     }
 
-    public void setStart_station(String start_station) {
-        this.start_station = start_station;
+    public void setStartStation(String startStation) {
+        this.startStation = startStation;
     }
 
-    public String getEnd_station() {
-        return end_station;
+    public String getEndStation() {
+        return endStation;
     }
 
-    public void setEnd_station(String end_station) {
-        this.end_station = end_station;
+    public void setEndStation(String endStation) {
+        this.endStation = endStation;
     }
 
-    public String getTrip_date() {
-        return trip_date;
+    public String getTripDate() {
+        return tripDate;
     }
 
-    public void setTrip_date(String trip_date) {
-        this.trip_date = trip_date;
+    public void setTripDate(String tripDate) {
+        this.tripDate = tripDate;
     }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users.addAll(users);
+    }
+
+    public void setUser(User user) {
+        this.users.add(user);
+    }
+
 }

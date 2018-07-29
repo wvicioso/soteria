@@ -40,4 +40,9 @@ public class UserController {
     public void insertUser(@RequestBody User user) {
         this.userService.insertUser(user);
     }
+
+    @RequestMapping(value = "/school/{school}", method = RequestMethod.GET)
+    public void getUserByAddress(@PathVariable("school") long id) {
+        this.userService.getUserBySchool(id);
+    }
 }

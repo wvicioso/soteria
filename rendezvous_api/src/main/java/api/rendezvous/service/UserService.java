@@ -16,9 +16,6 @@ public class UserService {
     @Qualifier("MySql")
     private UserRepository userrepository;
 
-//    @Autowired
-//    @Qualifier("FakeData")
-//    private UserDao userrepository;
 
     public Collection<User> getAllUsers() {
         return (Collection<User>) this.userrepository.findAll();
@@ -36,8 +33,9 @@ public class UserService {
 
     public void updateUser(User user) { this.userrepository.save(user);
     }
-
     public void insertUser(User user) {
         this.userrepository.save(user);
     }
+
+    public void getUserBySchool(long id) { this.userrepository.findBySchoolId(id); }
 }

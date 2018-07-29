@@ -1,42 +1,50 @@
 package api.rendezvous.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 public class Station {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long station_id;
-
-    String station_name;
-//    Map<Long, String> lines;
+    private long id;
+    String name;
     Double latitude;
     Double longitude;
+    @OneToMany
+    List<Train> trains;
 
-//    public Station(long station_id, String station_name, Map<Long, String> lines, Double latitude, Double longitude) {
-//        this.station_id = station_id;
-//        this.station_name = station_name;
-//        this.lines  = lines;
-//        this.latitude = latitude;
-//        this.longitude = longitude;
-//    }
+    public Station() {
+    }
 
-    public Station(long station_id, String station_name, Double latitude, Double longitude) {
-        this.station_id = station_id;
-        this.station_name = station_name;
+    public Station(long id, String station_name, Double latitude, Double longitude) {
+        this.id = id;
+        this.name = station_name;
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
-    public String getStation_name() {
-        return station_name;
+    public Station(long id, String station_name, Double latitude, Double longitude, List<Train> trains) {
+        this.id = id;
+        this.name = station_name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.trains = trains;
+    }
+
+    public Station(long id, String station_name, Double latitude, Double longitude, Train train) {
+        this.id = id;
+        this.name = station_name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.trains = new ArrayList<Train>();
+        this.trains.add(train);
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Double getLatitude() {
@@ -46,4 +54,6 @@ public class Station {
     public Double getLongitude() {
         return longitude;
     }
+
+    public List<Train> getTrains() { return trains; }
 }

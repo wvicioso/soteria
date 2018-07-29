@@ -12,10 +12,6 @@ import java.util.Optional;
 @Service
 public class TripService {
 
-//    @Autowired
-//    @Qualifier("FakeData")
-//    private TripDao triprepository;
-
     @Autowired
     @Qualifier("MySql")
     private TripRepository triprepository;

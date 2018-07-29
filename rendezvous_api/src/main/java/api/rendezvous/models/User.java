@@ -9,33 +9,42 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)             //Should use Sequence for better performance
-    private long user_id; // = ThreadLocalRandom.current().nextLong(1000000);  //temporary key generation
+    private long id;
 
     private String userName;
     private String firstName;
     private String lastName;
-    private String school_email;
-    private String profile_pic;     // is a url
-    private long schoolID;          //foreign key
+    private String email;
+    private String profilePic;     // is a url
 //    private String password;
+    @ManyToOne
+    private School school;
 
     public User() {
 
     }
-    public User(String userName, String firstName, String lastName, String school_email, long schoolID) {
+    public User(long id, String userName, String firstName, String lastName, String email) {
+        this.id = id;
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.school_email = school_email;
-        this.schoolID = schoolID;
+        this.email = email;
     }
 
-    public long getUser_id() {
-        return user_id;
+    public User(String userName, String firstName, String lastName, String school_email, School school) {
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = school_email;
+        this.school = school;
     }
 
-    public void setUser_id(long user_id) {
-        this.user_id = user_id;
+    public long getUserId() {
+        return id;
+    }
+
+    public void setUser_id(long id) {
+        this.id = id;
     }
 
     public String getUserName() {
@@ -62,49 +71,27 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getSchool_email() {
-        return school_email;
+    public String getEmail() {
+        return email;
     }
 
-    public void setSchool_email(String school_email) {
-        this.school_email = school_email;
+    public void setSchool_email(String email) {
+        this.email = email;
     }
 
     public String getProfile_pic() {
-        return profile_pic;
+        return profilePic;
     }
 
-    public void setProfile_pic(String profile_pic) {
-        this.profile_pic = profile_pic;
+    public void setProfile_pic(String profilePic) {
+        this.profilePic = profilePic;
     }
 
-    public long getSchoolID() {
-        return schoolID;
+    public School getSchool() {
+        return this.school;
     }
 
-    public void setSchoolID(long schoolID) {
-        this.schoolID = schoolID;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        User user = (User) o;
-
-
-        return user != null ? user_id == user.user_id : null;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + user_id +
-                ", userName='" + userName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", school_email=" + school_email +
-                '}';
+    public void setSchoolID(School school) {
+        this.school = school;
     }
 }
