@@ -37,5 +37,11 @@ public class UserService {
         this.userrepository.save(user);
     }
 
-    public void getUserBySchool(long id) { this.userrepository.findBySchoolId(id); }
+    public Collection<User> getUserBySchool(long id) { return this.userrepository.findBySchoolId(id); }
+//
+//    private void validateUser(long userId) {
+//        if (this.userrepository.findById(userId) == null) {
+//            throw new UserNotFoundException(userId);
+//        }
+//    }
 }

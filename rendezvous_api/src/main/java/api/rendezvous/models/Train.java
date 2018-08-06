@@ -1,23 +1,27 @@
 package api.rendezvous.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 
 @Entity
-public class Train {
+public class Train implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    String name;
 
-    public Train() {
-    }
+    @Column(nullable = false)
+    private String name;
 
-    public Train(long id, String name) {
-        this.id = id;
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    private boolean inService;
+
+    public Train() {}
+
+    public Train(String name) {
         this.name = name;
     }
 
@@ -25,7 +29,7 @@ public class Train {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
+
+    public boolean isInService() { return inService; }
 }

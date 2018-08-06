@@ -1,17 +1,25 @@
 package api.rendezvous.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Trip {
+public class Trip implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @NotEmpty
     String tripDate;
+
+    @NotEmpty
     String startStation;
+
+    @NotEmpty
     String endStation;
 
     @ManyToMany
@@ -25,14 +33,6 @@ public class Trip {
         this.startStation = start_station;
         this.endStation = endStation;
         this.users = new ArrayList<User>();
-    }
-
-    public Trip(long id, String tripDate, String startStation, String endStation, List<User> users) {
-        this.id = id;
-        this.tripDate = tripDate;
-        this.startStation = startStation;
-        this.endStation = endStation;
-        this.users = users;
     }
 
     public long getId() {

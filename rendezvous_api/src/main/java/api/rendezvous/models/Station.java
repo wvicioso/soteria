@@ -1,25 +1,34 @@
 package api.rendezvous.models;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
+import java.util.*;
 
 @Entity
-public class Station {
+public class Station implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false)
     String name;
+
+    @Column(nullable = false)
     Double latitude;
+
+    @Column(nullable = false)
     Double longitude;
+
     @OneToMany
-    List<Train> trains;
+    @Column(nullable = false)
+    List<Train> trains = new ArrayList<Train>();
 
     public Station() {
     }
 
-    public Station(long id, String station_name, Double latitude, Double longitude) {
+    public Station(String station_name, Double latitude, Double longitude) {
         this.id = id;
         this.name = station_name;
         this.latitude = latitude;
@@ -43,17 +52,11 @@ public class Station {
         this.trains.add(train);
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
-    public Double getLatitude() {
-        return latitude;
-    }
+    public Double getLatitude() { return latitude; }
 
-    public Double getLongitude() {
-        return longitude;
-    }
+    public Double getLongitude() { return longitude; }
 
     public List<Train> getTrains() { return trains; }
 }

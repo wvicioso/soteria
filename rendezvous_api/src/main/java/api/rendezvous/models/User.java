@@ -1,34 +1,38 @@
 package api.rendezvous.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Entity
 @Table(name = "User")
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)             //Should use Sequence for better performance
     private long id;
 
+    @Column(nullable = false)
     private String userName;
+
+    @Column(nullable = false)
     private String firstName;
+
+    @Column(nullable = false)
     private String lastName;
+
+    @Column(nullable = false)
     private String email;
+
     private String profilePic;     // is a url
-//    private String password;
+
+    //    private String password;
+
     @ManyToOne
     private School school;
 
     public User() {
-
-    }
-    public User(long id, String userName, String firstName, String lastName, String email) {
-        this.id = id;
-        this.userName = userName;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
     }
 
     public User(String userName, String firstName, String lastName, String school_email, School school) {

@@ -9,6 +9,5 @@ public class RendezvousApiApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(RendezvousApiApplication.class, args	);
-
 	}
 }
