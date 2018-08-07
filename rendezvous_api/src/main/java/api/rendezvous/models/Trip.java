@@ -16,23 +16,20 @@ public class Trip implements Serializable {
     @NotEmpty
     String tripDate;
 
-    @NotEmpty
-    String startStation;
+    @ManyToOne
+    Station startStation;
 
-    @NotEmpty
-    String endStation;
+    @ManyToOne
+    Station endStation;
 
     @ManyToMany
-    List<User> users;
+    List<User> users = new ArrayList<User>();
 
     public Trip() {
     }
 
-    public Trip(String tripDate, String start_station, String endStation) {
+    public Trip(String tripDate) {
         this.tripDate = tripDate;
-        this.startStation = start_station;
-        this.endStation = endStation;
-        this.users = new ArrayList<User>();
     }
 
     public long getId() {
@@ -43,19 +40,19 @@ public class Trip implements Serializable {
         this.id = id;
     }
 
-    public String getStartStation() {
+    public Station getStartStation() {
         return startStation;
     }
 
-    public void setStartStation(String startStation) {
+    public void setStartStation(Station startStation) {
         this.startStation = startStation;
     }
 
-    public String getEndStation() {
+    public Station getEndStation() {
         return endStation;
     }
 
-    public void setEndStation(String endStation) {
+    public void setEndStation(Station endStation) {
         this.endStation = endStation;
     }
 
@@ -78,5 +75,4 @@ public class Trip implements Serializable {
     public void setUser(User user) {
         this.users.add(user);
     }
-
 }

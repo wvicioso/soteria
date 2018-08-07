@@ -38,6 +38,10 @@ public class School implements Serializable {
         this.longitude = longitude;
     }
 
+    public long getId() {
+        return id;
+    }
+
     public String getSchoolName() {
         return schoolName;
     }
@@ -52,5 +56,13 @@ public class School implements Serializable {
 
     public Double getLongitude() {
         return longitude;
+    }
+
+    public List<Station> getStations() {
+        return stations;
+    }
+
+    public void setStations(List<Station> stations) {
+        this.stations = stations;
     }
 }

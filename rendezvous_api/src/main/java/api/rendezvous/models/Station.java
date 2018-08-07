@@ -52,6 +52,8 @@ public class Station implements Serializable {
         this.trains.add(train);
     }
 
+    public long getId() { return id; }
+
     public String getName() { return name; }
 
     public Double getLatitude() { return latitude; }
