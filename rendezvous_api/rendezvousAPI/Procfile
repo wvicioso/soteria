@@ -1,1 +1,0 @@
-web: gunicorn rendezvousAPI.wsgi --workers 2
