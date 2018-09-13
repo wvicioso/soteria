@@ -68,6 +68,14 @@ public class Trip implements Serializable {
         return users;
     }
 
+//    public List<Long> getUsers() {
+//        List<Long> userids = new ArrayList<Long>();
+//        for(User user : users) {
+//            userids.add(user.getUserId());
+//        }
+//        return userids;
+//    }
+
     public void setUsers(List<User> users) {
         this.users.addAll(users);
     }

@@ -16,7 +16,6 @@ public class TripService {
     @Qualifier("MySql")
     private TripRepository triprepository;
 
-
     public Collection<Trip> getAllTrips() {
         return this.triprepository.findAll();
     }
